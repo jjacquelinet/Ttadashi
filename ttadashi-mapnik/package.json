@@ -1,0 +1,13 @@
+{
+  "name": "vector-tile-server",
+  "version": "1.0.0",
+  "description": "Serveur de tuiles vectorielles avec Node.js et Mapnik",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mapnik": "file:/build/node-mapnik"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

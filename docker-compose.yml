@@ -1,0 +1,30 @@
+services:
+  postgis:
+    build: ./ttadashi-postgis
+    container_name: postgis
+    restart: always
+    environment:
+      POSTGRES_USER: gisuser
+      POSTGRES_PASSWORD: gispwd
+      POSTGRES_DB: gis
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis-data:/var/lib/postgresql/data
+
+  mapnik:
+    build: ./ttadashi-mapnik
+    container_name: mapnik
+    restart: always
+    depends_on:
+      - postgis
+    environment:
+      DB_HOST: postgis
+      DB_USER: gisuser
+      DB_PASSWORD: gispwd
+      DB_NAME: gis
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgis-data:
