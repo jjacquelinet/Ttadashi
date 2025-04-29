@@ -26,5 +26,14 @@ services:
     ports:
       - "3000:3000"
 
+  osm2pgsql:
+    build: ./ttadashi-osm2pgsql
+    container_name: osm2pgsql_import
+    depends_on:
+      - postgis
+    volumes:
+      - ./data:/import
+    entrypoint: ["sleep", "infinity"]
+
 volumes:
   postgis-data:
