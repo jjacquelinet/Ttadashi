@@ -1,19 +1,24 @@
-### Construire l’image
-```docker build -t vector-tile-server .```
+Ttadashi aims to print on a map all train, metro, bus lines, from [OpenStreetMap](https://www.openstreetmap.org/#map=13/48.10090/-1.67524&layers=T) data. 
 
+### Launch the app
 
-```docker build -t mapnik-build -f Dockerfile.mapnik .```
-```docker build -t mapnik-node-build -f Dockerfile.node.mapnik .```
-```docker build -t vector-tile-server -f Dockerfile.app .```
-```docker build -t my-postgis -f Dockerfile.postgis .```
+```shell
+docker compose up
+```
 
+### Import the osm data to the database
 
-### lancer un conteneur associé à une image
-```docker run -it mapnik-node-build sh```
-```docker run -it vector-tile-server sh```
+Name your OpenStreetMap data file `data.osm.pbf` and put it inside the `data/` folder of the main repository folder. 
 
+```shell
+docker-compose exec osm2pgsql sh
+```
 
-### Lancer les conteneurs
-```docker run -d --name postgis-container -p 5432:5432 my-postgis```
-```docker run -p 3000:3000 vector-tile-server```
+Inside the container, inside the `/app` folder : 
+```shell
+./import_osm.sh
+```
+
+### Show the map
+
 http://localhost:3000/tile/1/1/1.mvt
