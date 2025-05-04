@@ -12,9 +12,9 @@ app.get("/tile/:z/:x/:y.mvt", (req, res) => {
     const map = new mapnik.Map(256, 256);
     
     map.load("style.xml", function (err) {
-        if (err) return res.status(500).send("Erreur de chargement du style");
+        if (err) return res.status(500).send(`Erreur de chargement du style : ${err.message}`);  
 
-        const tile = new mapnik.VectorTile(z, x, y);
+        const tile = new mapnik.VectorTile(parseInt(z), parseInt(x), parseInt(y));
         map.render(tile, function (err, tile) {
             if (err) return res.status(500).send("Erreur de rendu");
             
