@@ -9,6 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Installation des dépendances Node.js
+ENV NODE_ENV=development
 RUN npm install
 
 # Copie du reste du code source dans le conteneur
@@ -18,4 +19,4 @@ COPY . .
 EXPOSE 3000
 
 # Démarrer l'application
-CMD ["node", "server.js"]
+CMD ["npm", "run", "dev"]

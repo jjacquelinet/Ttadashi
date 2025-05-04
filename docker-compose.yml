@@ -25,6 +25,11 @@ services:
       DB_NAME: gis
     ports:
       - "3000:3000"
+    volumes:
+      - ./ttadashi-mapnik/:/app
+      - nodemodules:/app/node_modules  # Prevents the container’s node_modules from being overridden by an empty one from the host
+    working_dir: /app
+    command: npm run dev
 
   osm2pgsql:
     build: ./ttadashi-osm2pgsql
@@ -37,3 +42,4 @@ services:
 
 volumes:
   postgis-data:
+  nodemodules:
