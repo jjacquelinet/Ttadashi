@@ -1,5 +1,5 @@
 const express = require("express");
-const mapnik = require("mapnik");
+const mapnik = require("@mapnik/mapnik");
 const fs = require("node:fs");
 
 mapnik.register_default_fonts();
