@@ -1,0 +1,24 @@
+# osm2pgsql style file for train and railway features
+# Format: column_name  type    pgsql_type     [flags]
+
+way     linestring      geometry
+
+# Keep all railway-related features
+way     railway         text        linear
+way     service         text        linear
+way     usage           text        linear
+way     name            text        linear
+way     electrified     text        linear
+way     gauge           text        linear
+way     layer           text        linear
+way     bridge          text        linear
+way     tunnel          text        linear
+way     tracks          text        linear
+way     maxspeed        text        linear
+way     operator        text        linear
+way     ref             text        linear
+
+# stations : 
+node    railway         text        point
+node    name            text        point
+node    operator        text        point

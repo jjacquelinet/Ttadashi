@@ -21,7 +21,9 @@ RUN make \
     && rm -rf osm2pgsql.tar.gz osm2pgsql-2.1.1
 
 # Définir le répertoire de travail
-WORKDIR /data
+WORKDIR /app
+COPY import_osm.sh railways.style /app/
+RUN chmod u+x import_osm.sh
 
 # Commande par défaut (peut être modifiée selon les besoins)
 CMD ["bash"]
